@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file("${projectDir}/build/generated")
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.5.3.Final'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    compileOnly 'org.hibernate:hibernate-jpamodelgen:5.5.6.Final'
+    annotationProcessor('org.hibernate:hibernate-jpamodelgen:5.5.6.Final')
+    implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.2'
+    implementation 'org.springframework:spring-webmvc:5.3.9'
+    implementation 'org.springframework:spring-context-support:5.3.9'
+    implementation 'org.springframework:spring-orm:5.3.9'
+    implementation 'org.springframework:spring-aop:5.3.9'
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.0.7.Final'
+    implementation group: 'javax.el', name: 'javax.el-api', version: '3.0.0'
+    implementation group: 'org.glassfish', name: 'javax.el', version: '3.0.1-b08'
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.0'
+    implementation 'org.springframework.data:spring-data-jpa:2.5.6'
+}
