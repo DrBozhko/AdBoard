@@ -1,13 +1,11 @@
 package com.repository;
 
-import com.domain.Author;
+import com.domain.BaseDomain;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AuthorRepository extends JpaRepository<Author, Integer> {
+public interface CRUDRepository<T extends BaseDomain> extends JpaRepository<T, Integer> {
 
-    @EntityGraph(attributePaths = {"phones"})
-    List<Author> findAll();
 }

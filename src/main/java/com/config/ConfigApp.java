@@ -20,7 +20,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@ComponentScan(basePackages = {"com.dao", "com.service", "com.controller", "com.handler"})
+@ComponentScan(basePackages = {"com.service", "com.controller", "com.handler"})
 @EnableTransactionManagement
 @EnableWebMvc
 @EnableAspectJAutoProxy(proxyTargetClass = true)

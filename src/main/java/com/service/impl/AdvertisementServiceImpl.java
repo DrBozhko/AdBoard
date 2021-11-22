@@ -1,7 +1,7 @@
 package com.service.impl;
 
-import com.dao.AdvertisementDAO;
 import com.domain.Advertisement;
+import com.repository.AdvertisementRepository;
 import com.service.AdvertisementService;
 import com.service.MailService;
 import lombok.AccessLevel;
@@ -17,53 +17,53 @@ import java.util.List;
 @AllArgsConstructor
 public class AdvertisementServiceImpl implements AdvertisementService {
 
-    AdvertisementDAO DAO;
+    AdvertisementRepository repository;
     MailService MAIL_SERVICE;
 
     @Override
     public void save(Advertisement advertisement) {
-        DAO.save(advertisement);
+        repository.save(advertisement);
         MAIL_SERVICE.sendMails(advertisement);
     }
 
     @Override
     public void update(Advertisement advertisement) {
-        DAO.update(advertisement);
+        repository.save(advertisement);
     }
 
     @Override
     public Advertisement findById(int id) {
-        return DAO.findById(id);
+        return repository.findById(id).get();
     }
 
     @Override
     public void deleteById(int id) {
-        DAO.deleteById(id);
+        repository.deleteById(id);
     }
 
     @Override
     public void deleteAdvertisementByAuthor(int authorId) {
-      DAO.deleteByAuthorId(authorId);
+      repository.deleteAllByAuthorId(authorId);
     }
 
     @Override
     public List<Advertisement> findFromDifferentRubrics(List<Integer> ids) {
-        return DAO.findFromDifferentRubrics(ids);
+        return repository.findAllByRubricIsIn(ids);
     }
 
     @Override
     public List<Advertisement> findByAuthorId(int id) {
-        return DAO.findAllByAuthor(id);
+        return repository.findAllByAuthorId(id);
     }
 
     @Override
     public List<Advertisement> findByDate(LocalDate localDate) {
-        return DAO.findByDate(localDate);
+        return repository.findAllByPublication(localDate);
     }
 
     @Override
     public List<Advertisement> findByText(String text) {
-        return DAO.findByText(text);
+        return repository.findAllByNameContains(text);
     }
 
 

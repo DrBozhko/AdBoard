@@ -1,7 +1,6 @@
 package com.controller;
 
 import com.domain.Author;
-import com.domain.Rubric;
 import com.service.CrudService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

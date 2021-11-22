@@ -2,6 +2,7 @@ package com.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -18,21 +19,11 @@ import static lombok.AccessLevel.PRIVATE;
 @Getter
 @Setter
 @ToString
-@Builder
-@NoArgsConstructor(access = PACKAGE)
-@AllArgsConstructor(access = PACKAGE)
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = PRIVATE)
-public class MatchingAd {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Min(value = 0)
-    @Column(name = "mad_id")
-    int id;
-
-    @Version
-    @Min(value = 0)
-    @Column(name = "VERSION")
-    int version;
+public class MatchingAd extends BaseDomain {
 
     @ManyToOne
     @JoinColumn(name = "FK_Mad_Author")

@@ -1,7 +1,7 @@
 package com.service.impl;
 
-import com.dao.CrudDAO;
 import com.domain.Rubric;
+import com.repository.CRUDRepository;
 import com.service.CrudService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor
 public class RubricServiceImpl implements CrudService<Rubric> {
-    CrudDAO<Rubric> dao;
+    CRUDRepository<Rubric> dao;
 
     @Override
     public void save(Rubric rubric) {
@@ -21,12 +21,12 @@ public class RubricServiceImpl implements CrudService<Rubric> {
 
     @Override
     public void update(Rubric rubric) {
-        dao.update(rubric);
+        dao.save(rubric);
     }
 
     @Override
     public Rubric findById(int id) {
-        return dao.findById(id);
+        return dao.findById(id).get();
     }
 
     @Override

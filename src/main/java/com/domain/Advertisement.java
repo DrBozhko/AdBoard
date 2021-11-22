@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -17,21 +18,11 @@ import static lombok.AccessLevel.*;
 @Getter
 @Setter
 @ToString
-@Builder
+@SuperBuilder
 @NoArgsConstructor(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
 @FieldDefaults(level = PRIVATE)
-public class Advertisement {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ad_id")
-    @Min(value = 0)
-    int id;
-
-    @Version
-    @Column(name = "VERSION")
-    @Min(value = 0)
-    int version;
+public class Advertisement extends BaseDomain {
 
     @NotBlank
     @Size(min = 2, max = 20)

@@ -1,6 +1,8 @@
 package com.service;
 
-public interface CrudService<T> {
+import com.domain.BaseDomain;
+
+public interface CrudService<T extends BaseDomain> {
     void save(T t);
     void update(T t);
     T findById(int id);

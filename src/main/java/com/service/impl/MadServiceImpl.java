@@ -1,8 +1,7 @@
 package com.service.impl;
 
-import com.dao.CrudDAO;
-import com.domain.Author;
 import com.domain.MatchingAd;
+import com.repository.CRUDRepository;
 import com.service.CrudService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -14,25 +13,25 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class MadServiceImpl implements CrudService<MatchingAd> {
 
-    CrudDAO<MatchingAd> dao;
+    CRUDRepository<MatchingAd> repository;
 
     @Override
     public void save(MatchingAd matchingAd) {
-        dao.save(matchingAd);
+        repository.save(matchingAd);
     }
 
     @Override
     public void update(MatchingAd matchingAd) {
-        dao.update(matchingAd);
+        repository.save(matchingAd);
     }
 
     @Override
     public MatchingAd findById(int id) {
-        return dao.findById(id);
+        return repository.findById(id).get();
     }
 
     @Override
     public void deleteById(int id) {
-        dao.deleteById(id);
+        repository.deleteById(id);
     }
 }

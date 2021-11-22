@@ -2,6 +2,7 @@ package com.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -15,22 +16,11 @@ import static lombok.AccessLevel.*;
 @Getter
 @Setter
 @ToString
-@Builder
-@NoArgsConstructor(access = PACKAGE)
+@SuperBuilder
+@NoArgsConstructor
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE)
-public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "address_id")
-    @Min(value = 0)
-    int id;
-
-    @Version
-    @Column(name = "VERSION")
-    @Min(value = 0)
-    int version;
-
+public class Address extends BaseDomain {
     @Enumerated(EnumType.STRING)
     @NotNull
     Country country;//enum

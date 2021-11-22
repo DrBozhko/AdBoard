@@ -2,6 +2,7 @@ package com.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -19,22 +20,11 @@ import static lombok.AccessLevel.*;
 @Getter
 @Setter
 @ToString
-@Builder
-@NoArgsConstructor(access = PACKAGE)
+@SuperBuilder
+@NoArgsConstructor
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE)
-public class Author {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Min(value = 0)
-    @Column(name = "author_id")
-    int id;
-
-    @Version
-    @Min(value = 0)
-    @Column(name = "VERSION")
-    int version;
-
+public class Author extends BaseDomain {
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true,
             mappedBy = "author")
     List<@NotNull Phone> phones;

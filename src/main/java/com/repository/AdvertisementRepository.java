@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface AdvertisementRepository extends JpaRepository<Advertisement, Integer> {
+public interface AdvertisementRepository extends CRUDRepository<Advertisement> {
     void deleteAllByAuthorId(int id);
     @Query("SELECT ad FROM Advertisement ad WHERE ad.rubric.id IN :ids")
     List<Advertisement> findAllByRubricIsIn(@Param("ids") List<Integer> ids);
