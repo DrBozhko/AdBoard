@@ -21,7 +21,7 @@ import static lombok.AccessLevel.*;
 @FieldDefaults(level = PRIVATE)
 public class Address {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     @Min(value = 0)
     int id;

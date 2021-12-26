@@ -1,7 +1,9 @@
 package com.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -23,7 +25,7 @@ import static lombok.AccessLevel.*;
 @FieldDefaults(level = PRIVATE)
 public class Advertisement {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ad_id")
     @Min(value = 0)
     int id;
@@ -38,6 +40,7 @@ public class Advertisement {
     String name;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @PastOrPresent
     LocalDate publication;
 

@@ -1,12 +1,11 @@
-package com.config;
+package config;
 
+import com.config.MailConfig;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -19,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = {"com.dao", "com.service", "com.controller", "com.handler"})
@@ -28,8 +26,8 @@ import java.util.Properties;
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableJpaRepositories(basePackages = "com.repository")
 @Import(MailConfig.class)
-@PropertySource("classpath:db.properties")
-public class ConfigApp implements WebMvcConfigurer, EnvironmentAware {
+@PropertySource("classpath:db_test.properties")
+public class TestConfigApp implements WebMvcConfigurer, EnvironmentAware {
     private Environment environment;
 
     @Bean

@@ -20,7 +20,7 @@ import static lombok.AccessLevel.*;
 @FieldDefaults(level = PRIVATE)
 public class Mail {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(value = 0)
     @Column(name = "email_id")
     int id;
@@ -31,6 +31,6 @@ public class Mail {
     int version;
 
     @NotBlank
-    @Size(min = 2, max = 20)
+    @Size(min = 2, max = 50)
     String name;
 }

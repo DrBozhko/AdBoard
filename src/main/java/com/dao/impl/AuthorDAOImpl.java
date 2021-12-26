@@ -32,7 +32,7 @@ public class AuthorDAOImpl implements CrudDAO<Author> {
 
     @Override
     public Author findById(int id) {
-        return repository.findById(id).get();
+        return repository.findById(id);
     }
 
     @Override

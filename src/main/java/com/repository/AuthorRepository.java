@@ -10,4 +10,7 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
     @EntityGraph(attributePaths = {"phones"})
     List<Author> findAll();
+
+    @EntityGraph(attributePaths = {"phones", "address", "email"})
+    Author findById(int id);
 }

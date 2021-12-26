@@ -9,19 +9,21 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import java.util.Objects;
+
 import static lombok.AccessLevel.*;
 
 @Entity
 @Getter
 @Setter
-@ToString
 @Builder
+@EqualsAndHashCode(exclude = {"author"})
 @NoArgsConstructor(access = PACKAGE)
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE)
 public class Phone {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(value = 0)
     @Column(name = "phone_id")
     int id;
@@ -35,8 +37,22 @@ public class Phone {
     @Size(min = 2, max = 20)
     String number;
 
-    @Valid
     @ManyToOne
     @JoinColumn(name = "FK_Phone_Author")
     Author author;
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Phone phone = (Phone) o;
+//        return id == phone.id &&
+//                version == phone.version &&
+//                Objects.equals(number, phone.number);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, version, number);
+//    }
 }

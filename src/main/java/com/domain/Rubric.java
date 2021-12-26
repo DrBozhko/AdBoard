@@ -20,10 +20,11 @@ import static lombok.AccessLevel.*;
 @NoArgsConstructor(access = PACKAGE)
 @AllArgsConstructor(access = PACKAGE)
 @FieldDefaults(level = PRIVATE)
+@EqualsAndHashCode
 public class Rubric {
     @Id
     @Min(value = 0)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rubric_id")
     int id;
 
@@ -35,5 +36,6 @@ public class Rubric {
     @NotBlank
     @Size(min = 2, max = 20)
     String name;
+
 
 }
