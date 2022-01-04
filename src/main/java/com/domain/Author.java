@@ -1,5 +1,6 @@
 package com.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 
 import java.time.Year;
 import java.util.List;
+import java.util.Set;
 
 import static lombok.AccessLevel.*;
 
@@ -54,5 +56,15 @@ public class Author {
     @JoinColumn(name = "FK_Author_Email")
     Mail email;
 
+    @Size(min = 2)
+    String password;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "author_role", joinColumns = @JoinColumn(name = "FK_AUTHOR"),
+            inverseJoinColumns = @JoinColumn(name = "FK_ROLE"))
+    Set<Role> roles;
+
+    @JsonProperty(value = "active")
+    boolean active;
 
 }

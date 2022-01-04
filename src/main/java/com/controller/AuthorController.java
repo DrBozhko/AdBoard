@@ -6,6 +6,7 @@ import com.service.CrudService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,16 +24,19 @@ public class AuthorController {
     }
 
     @PutMapping("/author")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public void update(@RequestBody @Valid Author author) {
         service.update(author);
     }
 
     @GetMapping("/author/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public Author find(@PathVariable int id) {
         return service.findById(id);
     }
 
     @DeleteMapping("/author/{id}")
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public void delete(@PathVariable int id) {
         service.deleteById(id);
     }

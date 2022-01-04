@@ -1,5 +1,6 @@
 package com.config;
 
+import com.config.security.SecurityConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -10,7 +11,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{ConfigApp.class};
+        return new Class[]{ConfigApp.class, SecurityConfig.class};
     }
 
     @Override

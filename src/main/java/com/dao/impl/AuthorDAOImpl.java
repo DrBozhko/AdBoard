@@ -7,6 +7,7 @@ import com.repository.AuthorRepository;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,8 +21,11 @@ public class AuthorDAOImpl implements CrudDAO<Author> {
 
     AuthorRepository repository;
 
+    PasswordEncoder encoder;
+
     @Override
     public void save(Author author) {
+        author.setPassword(encoder.encode(author.getPassword()));
         repository.save(author);
     }
 

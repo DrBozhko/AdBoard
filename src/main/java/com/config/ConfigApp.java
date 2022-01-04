@@ -1,9 +1,7 @@
 package com.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import com.config.security.EncoderConfig;
+import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -23,6 +21,7 @@ import javax.sql.DataSource;
 @ComponentScan(basePackages = {"com.dao", "com.service", "com.controller", "com.handler"})
 @EnableTransactionManagement
 @EnableWebMvc
+@Import(value = {EncoderConfig.class})
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableJpaRepositories(basePackages = "com.repository")
 public class ConfigApp implements WebMvcConfigurer {
