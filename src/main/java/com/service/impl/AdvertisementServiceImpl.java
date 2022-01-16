@@ -2,11 +2,15 @@ package com.service.impl;
 
 import com.dao.AdvertisementDAO;
 import com.domain.Advertisement;
+import com.repository.AdvertisementRepository;
 import com.service.AdvertisementService;
 import com.service.MailService;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -19,6 +23,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     AdvertisementDAO DAO;
     MailService MAIL_SERVICE;
+    AdvertisementRepository REPOSITORY;
 
     @Override
     public void save(Advertisement advertisement) {
@@ -66,5 +71,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         return DAO.findByText(text);
     }
 
+    // pagination
+    public List<Advertisement> getSomePagination(int page, int size) {
+        PageRequest pr = PageRequest.of(page, size, Sort.by("publication"));
+        Page<Advertisement> personPage = REPOSITORY.findAll(pr);
 
+        return personPage.toList();
+    }
 }
