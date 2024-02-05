@@ -1,0 +1,1 @@
+Sample project showcasing JWT security implementation based on Spring Boot and Spring Security, leveraging Hibernate for ORM and MySQL for data storage. Utilizes Spring Security 5 for authentication and authorization.
